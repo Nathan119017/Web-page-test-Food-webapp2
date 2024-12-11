@@ -27,7 +27,7 @@ header {
 }
 
 header .logo img {
-    height: 40px;
+    height: 100px;
 }
 
 @media screen and (max-width: 768px) {
@@ -58,7 +58,7 @@ header .search-bar {
 header .search-bar input {
     width: 90%;
     padding: 10px;
-    border: 2px solid #ff003c;
+    border: 2px solid #c6040a;
     border-right: none;
     border-radius: 5px 0 0 5px;
     outline: none;
@@ -74,10 +74,10 @@ header .search-bar input:focus {
 
 header .search-bar button {
     padding: 10px;
-    background-color: #ff3366;
+    background-color: #c6040a;
     color: #fff;
     
-    border: 2px solid #ff003c;
+    border: 2px solid #c6040a;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -85,11 +85,11 @@ header .search-bar button {
 
 header .search-bar button:hover {
     background-color: #fff;
-    color: #ff003c;
+    color: #c6040a;
 }
 
 header .profile button {
-    background-color: #ff3366;
+    background-color: #c6040a;
     color: #fff;
     border: none;
     padding: 5px 10px;
@@ -101,7 +101,7 @@ header .profile button {
 
 header .profile button:hover {
     background-color: #fff;
-    color: #ff003c;
+    color: #c6040a;
     
     transform: scale(1.05);
 }
@@ -169,7 +169,7 @@ header .profile button:hover {
   
   .about-content h2 {
     font-size: 2rem;
-    color: #ff003c;
+    color: #c6040a;
     margin-bottom: 20px;
   }
   
@@ -236,7 +236,7 @@ header .profile button:hover {
   
   .how-it-works-content h2 {
     font-size: 2rem;
-    color: #ff003c;
+    color: #c6040a;
     margin-bottom: 20px;
   }
   
@@ -296,7 +296,7 @@ header .profile button:hover {
   }
   
   .grid-item h3 {
-    color: #ff003c;
+    color: #c6040a;
     margin-bottom: 10px;
     font-size: 1.2rem;
   }
@@ -349,9 +349,9 @@ header .profile button:hover {
 }
 
 .card:hover {
-    background-color: #ff003c;
+    background-color: #c6040a;
     color: #fff;
-    border-color: #ff003c;
+    border-color: #c6040a;
 }
 
 .promotions {
@@ -369,7 +369,7 @@ header .profile button:hover {
 }
 
 .promo {
-    background-color: #ff003c;
+    background-color: #c6040a;
     color: #fff;
     padding: 15px;
     border-radius: 5px;
