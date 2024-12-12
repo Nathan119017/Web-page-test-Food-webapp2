@@ -1,126 +1,179 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Faustina:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Pedidos</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Interfaz Interactiva</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header .logo {
+            font-size: 24px;
+            color: #e60012;
+            font-weight: bold;
+        }
+
+        .header .search {
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .header .search input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .header .profile {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 0;
+            background-color: #fff;
+        }
+
+        .categories button {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .categories button:hover {
+            background-color: #e60012;
+            color: #fff;
+        }
+
+        .suggestions {
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .suggestions h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .suggestions .items {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+        }
+
+        .suggestions .item {
+            min-width: 150px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .suggestions .item:hover {
+            transform: scale(1.05);
+        }
+
+        .promotions {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .promotions .promo-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .promotions .promo-item:hover {
+            background-color: #e60012;
+            color: #fff;
+        }
+
+        .promotions .promo-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 6px;
+            margin-right: 15px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-      <a href="#">
-        <div class="logo">
-            <img src="images/descarga.png" alt="PedidosYa logo">
-        </div>
-      </a>
-        <div class="location">
-            <p>Enviar a <span><br>Tegucigalpa</span></p>
-        </div>
-        <div class="search-bar">
+    <div class="header">
+        <div class="logo">PedidosYa</div>
+        <div class="search">
             <input type="text" placeholder="Buscar locales">
-            <button>🔍</button>
         </div>
-        <div class="profile">
-            <button>Mi Perfil</button>
+        <div class="profile">Mi Perfil</div>
+    </div>
+
+    <div class="categories">
+        <button onclick="openCategory('restaurantes')">Restaurantes</button>
+        <button onclick="openCategory('market')">PedidosYa Market</button>
+        <button onclick="openCategory('super')">Super</button>
+        <button onclick="openCategory('bebidas')">Bebidas</button>
+        <button onclick="openCategory('farmacias')">Farmacias</button>
+        <button onclick="openCategory('tiendas')">Tiendas</button>
+    </div>
+
+    <div class="suggestions">
+        <h2>Te sugerimos</h2>
+        <div class="items">
+            <div class="item">Toro Bravo</div>
+            <div class="item">Popeyes</div>
+            <div class="item">Olanchito</div>
+            <div class="item">Miraflores</div>
         </div>
-    </header>
-    
-    <main>
-        <section class="categories" style="padding-top:20px; margin-top: 10px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <h2 style="margin-bottom: 0;">Hola. ¿Qué vas a pedir hoy?</h2>
-            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
-                <a href="pages/index.html">
-                    <div class="category-item" style="background-color: #ffb526;">
-                        <span class="category-text">Restaurantes</span>
-                        <img src="images/restaurants-foto-q-v2.png" alt="Restaurantes">
-                    </div>
-                </a>
-                <a href="pages/index.html">
-                    <div class="category-item" style="background-color: #ea044e;">
-                        <span class="category-text">Supermercado</span>
-                        <img src="images/supermercado.png" alt="PedidosYa Market">
-                    </div>
-                </a>
-                <a href="pages/index.html">
-                    <div class="category-item">
-                        <span class="category-text">Mascotas</span>
-                        <img src="images/mascotas-foto-q.png" alt="Super">
-                    </div>
-                </a>
-            </div>
-        </section>
-<br>
-<br>
-<br>
-        <section class="suggestions">
-            <h2>Te sugerimos</h2>
-            <div class="cards">
-                <div class="card">Tapachula <span>Hasta 24% Dto</span></div>
-                <div class="card">Pollo Campero</div>
-                <div class="card">Promo Pizza <span>Hasta 63% Dto</span></div>
-                <div class="card">The Wings Factory</div>
-                <div class="card">Argentino BBQ</div>
-                <div class="card">Colombianadas</div>
-                <div class="card">Restaurante Kalfu</div>
-                <div class="card">House of Wings</div>
-                <div class="card">Family Pizza</div>
-            </div>
-        </section> 
+    </div>
 
-        <section id="about" class="about-section">
-            <div class="about-content">
-              <h2>Te Gusta, Lo Pides es una iniciativa de impacto social</h2>
-              <p>
-                Nuestra misión es inspirar y motivar a los consumidores a unirse a la lucha contra el descarte de alimentos, ofreciéndoles productos de calidad a precios accesibles. A través de nuestra plataforma, facilitamos el acceso a productos excedentes de tiendas y restaurantes, contribuyendo a una economía sostenible y responsable.
-              </p>
-              <p>
-                Únete a nuestra comunidad y ayuda a salvar los alimentos que aún tienen mucho por ofrecer. Ofrecemos una alternativa accesible y responsable, reduciendo el impacto ambiental y apoyando a los negocios locales.
-              </p>
-              <div class="app-buttons">
-                <a href="#" class="app-store">Consíguelo en el App Store</a>
-                <a href="#" class="google-play">Disponible en Google Play</a>
-              </div>
-            </div>
-          </section>
+    <div class="promotions">
+        <h2>No te pierdas estas promociones</h2>
+        <div class="promo-item">
+            <img src="https://via.placeholder.com/50" alt="promo">
+            <div>Restaurantes: ¡Disfruta estas promociones!</div>
+        </div>
+        <div class="promo-item">
+            <img src="https://via.placeholder.com/50" alt="promo">
+            <div>Medios de pago: ¡Conoce todas las opciones de ahorro!</div>
+        </div>
+    </div>
 
-
-          <section id="how-it-works" class="how-it-works-section">
-            <div class="how-it-works-content">
-              <h2>Cómo Funciona</h2>
-              <p>
-                En <strong>Te Gusta, Lo Pides</strong>, creemos en la importancia de facilitar el acceso a alimentos de calidad de una manera responsable y consciente. Nuestra plataforma conecta a los usuarios con productos que de otro modo podrían desperdiciarse, ofreciendo una experiencia fácil y accesible para todos.
-              </p>
-              <p>
-                <strong>1. Explora Nuestras Categorías:</strong> Navega por una amplia variedad de productos, desde alimentos frescos hasta comidas preparadas. Los productos están organizados en categorías claras para que encuentres rápidamente lo que necesitas. Cada artículo tiene una descripción detallada y su precio, y algunos incluyen descuentos especiales.
-              </p>
-              <p>
-                <strong>2. Añade al Carrito:</strong> Selecciona los productos que deseas y agrégalos al carrito. Puedes ajustar la cantidad de cada producto según tus necesidades. Nuestro sistema de carrito es sencillo de usar y te permite ver el total de tu compra en todo momento.
-              </p>
-              <p>
-                <strong>3. Elige la Modalidad de Entrega:</strong> Te ofrecemos dos opciones para recibir tus productos:
-                <div class="grid-container">
-                
-                  <div class="grid-item">
-                  <strong>Recogida en Establecimiento:</strong> Si prefieres, puedes recoger tus productos directamente en el establecimiento a una hora que te sea conveniente. Esto te permite ahorrar en costos de entrega y ayuda a reducir la huella de carbono asociada con el transporte.</li>
-                </div>
-                <div class="grid-item">
-                  <strong>Entrega a Domicilio:</strong> Si lo prefieres, podemos llevar tus productos hasta tu puerta. Esta opción es ideal para quienes buscan comodidad y rapidez en su experiencia de compra.</li>
-                </div>
-                
-              </div>
-              </p>
-              <p>
-                <strong>4. Contribuye a la Sostenibilidad:</strong> Cada compra en nuestra plataforma ayuda a reducir el desperdicio alimentario. Al adquirir productos que podrían haber sido desechados, no solo ahorras dinero, sino que también apoyas el consumo responsable. Así, juntos contribuimos a un mundo más sostenible, reduciendo el impacto ambiental y apoyando a los negocios locales que forman parte de nuestra comunidad.
-              </p>
-              <p class="footer">
-                Únete a <strong>Te Gusta, Lo Pides</strong> y sé parte del cambio. Cada compra es una oportunidad para hacer una diferencia en el mundo y en tu comunidad.
-              </p>
-          </div>
-          </section>
-    </main>
+    <script>
+        function openCategory(category) {
+            alert(`Abriendo categoría: ${category}`);
+        }
+    </script>
 </body>
-<script src="script.js"></script>
 </html>
