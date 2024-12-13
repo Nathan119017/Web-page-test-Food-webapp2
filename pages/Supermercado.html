@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Faustina:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Pedidos</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: "Roboto", serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        header .logo img {
+            height: 100px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .logo {
+                display: none;
+            }
+        }
+        
+        header .location {
+            color: #000000;
+            font-size: 0.9em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+        
+        header .location span {
+            font-weight: bold;
+        }
+        
+        header .search-bar {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 20px;
+        }
+        
+        header .search-bar input {
+            width: 90%;
+            padding: 10px;
+            border: 2px solid #c6040a;
+            border-right: none;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            background-color: #fff;
+            color: #333;
+            font-size: 1em;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        
+        header .search-bar input:focus {
+            box-shadow: 0 0 10px rgba(255, 0, 60, 0.5);
+        }
+        
+        header .search-bar button {
+            padding: 10px;
+            background-color: #c6040a;
+            color: #fff;
+            
+            border: 2px solid #c6040a;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+        
+        header .search-bar button:hover {
+            background-color: #fff;
+            color: #c6040a;
+        }
+        
+        header .profile button {
+            background-color: #c6040a;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+        
+        header .profile button:hover {
+            background-color: #fff;
+            color: #c6040a;
+            
+            transform: scale(1.05);
+        }
+        
+
+        main {
+            display: flex;
+            gap: 20px;
+            margin: 20px;
+        }
+
+        .filters {
+            width: 250px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .filters h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .filters ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .filters ul li {
+            margin-bottom: 10px;
+        }
+
+        .restaurant-list {
+            flex: 1;
+        }
+
+        .restaurant {
+            background-color: #fff;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .restaurant img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .restaurant .info {
+            flex: 1;
+        }
+
+        .restaurant .info h4 {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        .restaurant .info p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .restaurant .rating {
+            font-size: 0.9em;
+            font-weight:800;
+            color: #c6040a;
+        }
+
+        @media screen and (max-width: 768px) {
+            .logo {
+                display: none;
+            }
+
+            main {
+                flex-direction: column;
+            }
+
+            .filters {
+                width: 100%;
+                display: none;
+                position: relative;
+            }
+
+            .filters.show {
+                display: block;
+            }
+
+            .filters-toggle {
+                display:block!important;
+                background-color: #c6040a;
+                color: #fff;
+                padding: 10px;
+                text-align: center;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+
+        .filters-toggle {
+            display: none;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filtersToggle = document.querySelector('.filters-toggle');
+            const filters = document.querySelector('.filters');
+
+            filtersToggle.addEventListener('click', () => {
+                filters.classList.toggle('show');
+            });
+        });
+    </script>
+    
+</head>
+<body>
+    <header>
+        <a href="../index.html">
+        <div class="logo">
+            <img src="../images/descarga.png" alt="PedidosYa logo">
+        </div>
+    </a>
+        <div class="location">
+            <p>Enviar a <span><br>Tegucigalpa</span></p>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar locales">
+            <button>🔍</button>
+        </div>
+        <div class="profile">
+            <button>Mi Perfil</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="filters-toggle">Mostrar Filtros</div>
+        <aside class="filters">
+            <h3>Ordenar</h3>
+            <ul>
+                <li>Sugeridos</li>
+                <li>Mejor puntuados</li>
+                <li>Más cercanos</li>
+                <li>Más rápidos</li>
+            </ul>
+
+            <h3>Filtros</h3>
+            <ul>
+                <li>Entrega por PedidosYa</li>
+                <li>Retiro en local</li>
+            </ul>
+
+            <h3>Promociones</h3>
+            <ul>
+                <li>Descuentos</li>
+                <li>Beneficios Plus</li>
+            </ul>
+        </aside>
+
+
+        <section class="restaurant-list">
+            <div class="restaurant">
+                <img src="images/super1.jpg" alt="Alitas Miraflores">
+                <div class="info">
+                    <h4>La Colonia</h4>
+                    <p>Acepta pago online</p>
+                    <p>17 min · Envío gratis</p>
+                </div>
+                <div class="rating">4.3⭐</div>
+            </div>
+
+            <div class="restaurant">
+                <img src="images/super2.png" alt="El Pinche">
+                <div class="info">
+                    <h4>Tiendas Eliana</h4>
+                    <p>Cerrado por hoy</p>
+                    <p>25-40 min · Envío L40</p>
+                </div>
+                <div class="rating">4.1⭐</div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
